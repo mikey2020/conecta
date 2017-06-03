@@ -1,5 +1,12 @@
 exports.renderIndex = (req,res) =>{
-	res.render('index',{
-
-	});
+	if(req.user){
+		res.render('index',{
+			name: req.user.username,
+			results: req.session.results
+		});
+	}
+	else{
+		res.redirect('/login');
+	}
+	
 };

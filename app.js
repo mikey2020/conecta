@@ -4,12 +4,12 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
-//const passport = require('passport');
-//const flash = require('connect-flash');
-//const pass = require('./passport');
-//const db = require('./db');
+const passport = require('passport');
+const flash = require('connect-flash');
+const pass = require('./passport');
+const db = require('./db');
 const app = express();
-//const auth = pass();
+const auth = pass();
 
 
 app.locals.title = "Conecta";
@@ -32,14 +32,14 @@ app.use(session({
 
 }));
 
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-//app.use(flash());
+app.use(flash());
 
 require('./routes/indexRoute.js')(app);
 
-//require('./routes/users.js')(app);
+require('./routes/userRoutes.js')(app);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

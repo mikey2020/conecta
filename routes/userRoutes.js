@@ -1,18 +1,19 @@
+const User = require('mongoose').model('User');
 
-const user = require('./userController');
-const multer = require('multer');
-const uploads = multer({ dest: 'uploads/'});
+const user = require('../controllers/userController');
+//const multer = require('multer');
+//const uploads = multer({ dest: 'uploads/'});
 const passport = require('passport');
 const fs = require('fs');
 
-const cloudinary = require('cloudinary');
+//const cloudinary = require('cloudinary');
 
 
-cloudinary.config({ 
+/*cloudinary.config({ 
   cloud_name: 'photo-editor', 
   api_key: '169757236964799', 
   api_secret: 'KYDwlwNwlzCc7fcqeCtz0BqEbcQ' 
-});
+});*/
 
 
 require('../local');
@@ -47,17 +48,43 @@ module.exports = (app) => {
 		}
 	});*/
 
-	app.get('/signin',user.renderLogIn);
+	app.get('/login',user.renderLogIn);
 	
-	app.post('/signin', 
+	app.post('/login', 
 		passport.authenticate('local',{ successRedirect: '/',
-                                   failureRedirect: '/signin',
+                                   failureRedirect: '/login',
                                    failureFlash: true })
 	);
 
 
 	app.get('/logout',(req,res) => {
 		req.logout();
-		res.redirect('/signin');
-	})
+		res.redirect('/login');
+	});
+
+	app.post('/search', (req,res) => {
+		console.log(req.body);
+		User.findOne({ 'username': req.body.query }, function (err, user) {
+		  if (err) {
+		  	console.log(err);
+		  	res.redirect('/');
+		  }
+		 
+		  else if(user == null){
+		  	res.json('doesnt exist');
+		  }
+		   
+		  else{
+		     console.log(user);
+		    res.json(user);
+		   }
+		  //req.session.results = user;
+		  //res.redirect('/');
+		  /*res.render('index',{
+				name: req.user.username,
+				results: req.session.results
+		  });*/
+		})
+	});
+
 };

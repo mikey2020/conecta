@@ -1,5 +1,26 @@
 const User = require('mongoose').model('User');
 
+const getErrorMessage = function(err) {  
+  let message = '';
+  if (err.code) {    
+    switch (err.code) {      
+      case 11000:      
+      case 11001:        
+      message = 'Username already exists';        
+      break;      
+      default:       
+      message = 'Something went wrong';    
+    }  
+  } 
+  else {    
+    for (var errName in err.errors) {      
+      if (err.errors[errName].message) 
+        message = err.errors[errName]. message;    
+    }  
+  }
+  return message; 
+};
+
 exports.renderSignUp = (req,res)=> {
 	res.render('signup',{
 
@@ -19,14 +40,14 @@ exports.SignUp = (req,res) => {
 				console.log(user);
 				var prompt = "Please sign in  here";
 				req.flash('info',prompt);
-				res.redirect('/signin');
+				res.redirect('/login');
 			}
 		});
 }
 
 exports.renderLogIn = (req,res) => {
 	if(!req.user){
-		res.render('signin',{
+		res.render('login',{
 			messages: req.flash('error') || req.flash('info')
 		});
 	}
@@ -34,6 +55,22 @@ exports.renderLogIn = (req,res) => {
 	else{
 		res.redirect('/');
 	}
+}
+
+exports.search = (req,res) => {
+	console.log(req.body.query)
+	User.findOne({ 'username': "morgan" }, function (err, user) {
+	  if (err) {
+	  	console.log(err);
+	  }
+	  req.session.results = user;
+	  res.json(user);
+	  //res.redirect('/');
+	  /*res.render('index',{
+			name: req.user.username,
+			results: req.session.results
+	  });*/
+	})
 }
 
 

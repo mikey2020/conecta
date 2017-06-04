@@ -30,6 +30,11 @@ const UserSchema = new Schema({
 
 	salt: String ,
 
+	lastVisit: {
+		type: Date,
+		default: new Date()
+	},
+
 }, {
 	timestamps: { createdAt: 'created_at' }
 });

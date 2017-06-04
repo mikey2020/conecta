@@ -1,3 +1,5 @@
+const User = require('mongoose').model('User');
+
 exports.renderIndex = (req,res) =>{
 	if(req.user){
 		res.render('index',{

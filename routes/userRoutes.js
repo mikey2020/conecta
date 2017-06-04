@@ -64,19 +64,22 @@ module.exports = (app) => {
 
 	app.post('/search', (req,res) => {
 		console.log(req.body);
-		User.findOne({ 'username': req.body.query }, function (err, user) {
+		User.find({ 'username': req.body.query}, function (err, user) {
 		  if (err) {
 		  	console.log(err);
 		  	res.redirect('/');
 		  }
 		 
-		  else if(user == null){
-		  	res.json('doesnt exist');
+		  else if(user === null){
+		  	console.log("user doesnt exidst");
+		  	res.json({'message':'doesnt exist'});
+		  	
+		  	
 		  }
 		   
 		  else{
 		     console.log(user);
-		    res.json(user);
+		     res.json(user);
 		   }
 		  //req.session.results = user;
 		  //res.redirect('/');

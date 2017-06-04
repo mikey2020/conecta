@@ -6,6 +6,7 @@
   </head>
   <% include temps/header.ejs %>
   <body>
+  	<p class="btn btn-default">start connecting</p>
   	<div class="container">
 	  <div class="jumbotron">
 	    <h2>hello <%=name%></h2>
@@ -16,9 +17,13 @@
 
 			<p>Search Results:</p>
 			<h1>{{name}}</h1>
-			<p>{{results}}</p>
+			<!--<p class="btn btn-default">{{results}}</p>-->
+			<ul>
+			    <li class="btn btn-default" ng-repeat="x in results">{{x.firstname}}</li>
+			</ul>
 
 		</div>
+
 	</div>
 
 	<script>
@@ -33,13 +38,13 @@
 				$http.post("/search",data)
 			    .then(function(response) {
 			    	//$scope.PostDataResponse = data;
-			    	if(response){
-			    		$scope.results = response.data.firstname + " " + response.data.lastname;
+			    	if(response.data[0].firstname){
+			    		//$scope.results = response.data[0].firstname + " " + response.data[0].lastname;
+			    		$scope.results = response.data ;
 			    	}
-			    	else if(response == null){
+			    	else{
 			    		$scope.results="";
 			    	}
-			        
 			    });
 			}
 		    

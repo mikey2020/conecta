@@ -19,7 +19,9 @@
 			<h1>{{name}}</h1>
 			<!--<p class="btn btn-default">{{results}}</p>-->
 			<ul>
-			    <li class="btn btn-default" ng-repeat="x in results">{{x.firstname}}</li>
+			    <li class="btn btn-default" ng-repeat="x in results">
+			    <a href= {{"/chat/"+x.username}}>{{x.firstname}}</a>
+			    </li>
 			</ul>
 
 		</div>

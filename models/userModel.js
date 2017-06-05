@@ -31,8 +31,7 @@ const UserSchema = new Schema({
 	salt: String ,
 
 	lastVisit: {
-		type: Date,
-		default: new Date()
+		type: Date
 	},
 
 }, {

@@ -4,8 +4,12 @@
     <title><%= title %></title>
   </head>
   <body> 
-    <p><a href="#">login here </a></p>
-
+    <p><a href="/login">login here </a></p>
+    <div>
+      <% for(let message in messages){ %>
+          <p ><%= messages[message] %></p>
+      <% } %>
+    </div>
     <div class = "jumbotron">
         <form method="post" action="/signup" class="form-horizontal">
            <div class="form-group" id="signup">

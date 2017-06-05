@@ -23,6 +23,7 @@ const getErrorMessage = function(err) {
 
 exports.renderSignUp = (req,res)=> {
 	res.render('signup',{
+		messages: req.flash('error')
 
 	});
 }
@@ -33,6 +34,7 @@ exports.SignUp = (req,res) => {
 		user.save(function(err){
 			if(err){
 				var message = getErrorMessage(err);
+				console.log(err);
 				req.flash('error',message);
 				res.redirect('/signup');
 			}
@@ -71,6 +73,15 @@ exports.search = (req,res) => {
 			results: req.session.results
 	  });*/
 	})
+}
+
+exports.renderChat = (req,res) => {
+
+	console.log("am working");
+	console.log(req.body);
+	res.render('chat-page',{
+		name: name
+	});
 }
 
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %> | Chat Page</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body> 
+    <h2>You are currently connecting with <%=name%></h2>
+    <div>
+      <p id="message" style="list-style-type:none">
+        <% for(let m in msg) { %>
+          <li><%=msg[m].message%></li>
+        <%}%>
+      </p>
+
+    </div>
+    <form class="chat" action="" mehod="post">
+        <input type="text" id="name" value=<%=username%> >
+        <input type="text" id="name1" value=<%=name%> >
+        <input type="text" id="msg" name="msg">
+        <button id="send">send</button>
+    </form>
+    <script>
+      const socket = io();
+      $(() =>{
+
+        $("#name").hide();
+         $("#name1").hide();
+        //socket.emit('username',<%=name%>);
+        $("form").submit(()=>{
+          socket.emit('chat-message',$("#msg").val(),$("#name").val(),$("#name1").val());
+          $("#msg").val('');
+          return false;
+        })
+
+        socket.on('display',(data)=>{
+           let name = $("#name").val();
+           let time = new Date();
+          $("#message").append('<li>' + name +  ": " +  data + "<br>" + time + '</li>');
+        })
+
+      })
+      
+
+    </script>
+  </body>
+</html>

@@ -4,6 +4,12 @@ const app = require('./app');
 
 const port = process.env.PORT ;
 
-const server = app.listen(port,()=>{
+const http = require('http').Server(app);
+
+const io = require('socket.io')(http);
+
+require('./chat.js')(io);
+
+const server = http.listen(port,()=>{
 	console.log("Server listening on port 3000");
 });

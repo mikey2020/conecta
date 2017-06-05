@@ -1,4 +1,7 @@
+
 const User = require('mongoose').model('User');
+require('../models/msgModel');
+const Message = require('mongoose').model('message');
 
 const user = require('../controllers/userController');
 //const multer = require('multer');
@@ -90,4 +93,39 @@ module.exports = (app) => {
 		})
 	});
 
-};
+	app.get('/chat/:name',(req,res) => {
+		console.log("am working");
+		if(!req.user){
+			res.redirect('/login');
+		}
+		else{
+			Message.find({'sentBy': req.user.username , 'sentTo': name},(err,msg)=>{
+				console.log(msg);
+				if(err){
+					console.log(err);
+				}
+				else{
+					
+					console.log(name);
+					
+					res.render('chat-page',{
+						username: req.user.username,
+						name: name,
+						msg: msg
+					});
+					
+				}
+		    })
+
+		}
+		
+		
+		
+	});
+
+	app.param("name",(req,res,next) => {
+		name = req.params.name ;
+		next(); 
+	});
+
+}; 

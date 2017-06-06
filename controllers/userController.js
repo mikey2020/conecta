@@ -1,10 +1,13 @@
 const User = require('mongoose').model('User');
 
+
 const getErrorMessage = function(err) {  
   let message = '';
   if (err.code) {    
     switch (err.code) {      
-      case 11000:      
+      case 11000:
+      message = "Email has  been used"   ;
+      break;   
       case 11001:        
       message = 'Username already exists';        
       break;      
@@ -23,12 +26,16 @@ const getErrorMessage = function(err) {
 
 exports.renderSignUp = (req,res)=> {
 	res.render('signup',{
-		messages: req.flash('error')
+		messages: req.flash('error'),
+		user: ""
 
 	});
 }
 
 exports.SignUp = (req,res) => {
+	console.log(req.body.email);
+	
+
 	let user = new User(req.body);
 
 		user.save(function(err){
@@ -50,7 +57,8 @@ exports.SignUp = (req,res) => {
 exports.renderLogIn = (req,res) => {
 	if(!req.user){
 		res.render('login',{
-			messages: req.flash('error') || req.flash('info')
+			messages: req.flash('error') || req.flash('info'),
+			user: ""
 		});
 	}
 

@@ -6,10 +6,13 @@ exports.renderIndex = (req,res) =>{
 		User.findOne({'username' : req.user.username},(err,user) =>{
 			
 		})
+
 		res.render('index',{
-			name: req.user.username,
-			results: req.session.results
+					name: req.user.username,
+					results: req.session.results,
+					user: req.user
 		});
+		
 	}
 	else{
 		res.redirect('/login');

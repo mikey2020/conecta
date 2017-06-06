@@ -3,6 +3,7 @@
   <head>
     <title><%= title %></title>
   </head>
+  <% include temps/header.ejs %>
   <body> 
     <p><a href="#">sign up here</a></p>
     <div>
@@ -10,6 +11,7 @@
           <p ><%= messages[message] %></p>
       <% } %>
     </div>
+    <div class="container">
     <div class = "jumbotron">
         <form method="post" action="/login" class="form-horizontal">
            <div class="form-group" id="signin">
@@ -17,9 +19,10 @@
             	<br>
             	<input type="password" placeholder = "password" name="password" class="form-control" id="pwd">
                 <br>
-            	<input type="submit" name="Sign In" class="btn btn-primary active">
+            	<input type="submit" name="Sign In" class="btn btn-primary active" value="Sign In">
            </div>  
         </form>
     <div>
+    </div>
   </body>
 </html>

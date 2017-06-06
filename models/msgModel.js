@@ -10,12 +10,9 @@ const messageSchema  = new Schema({
 		trim: true
 	},
 
-	sentBy: {
-		type: String,
-		required: true 
-	},
+	users: [],
 
-	sentTo:{
+	sentBy: {
 		type: String,
 		required: true
 	},
@@ -30,7 +27,14 @@ const messageSchema  = new Schema({
 
 messageSchema.pre('save' , function(next){
 	console.log("process is running ");
+	this.users.sort();
 	next();
+});
+
+messageSchema.post('save' , function(next){
+	console.log("process is done ");
+	console.log("message saved succesfully");
+	
 });
 
 

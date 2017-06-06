@@ -1,26 +1,25 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <title><%= title%></title>
 
   </head>
-  <% include temps/header.ejs %>
+  
   <body>
-  	<p class="btn btn-default">start connecting</p>
+  	<% include temps/header.ejs %>
   	<div class="container">
 	  <div class="jumbotron">
-	    <h2>hello <%=name%></h2>
-	    <% if(results) { %>
-	    	<p><%results.firstname + " " + results.lastname%></p>
+	  	<% if(name) { %>
+	    	<h2>hello <%=name%></h2>
 	    <%}%>
-	    <div > 
+	    <div> 
 
 			<p>Search Results:</p>
-			<h1>{{name}}</h1>
 			<!--<p class="btn btn-default">{{results}}</p>-->
 			<ul>
-			    <li class="btn btn-default" ng-repeat="x in results">
-			    <a href= {{"/chat/"+x.username}}>{{x.firstname}}</a>
+			    <li style="list-style-type:none" ng-repeat="x in results">
+			    <a class="btn btn-default" href= {{"/chat/"+x.username}}>{{x.firstname + " " + x.lastname}}</a>
 			    </li>
 			</ul>
 

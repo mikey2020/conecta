@@ -99,7 +99,11 @@ module.exports = (app) => {
 			res.redirect('/login');
 		}
 		else{
-			Message.find({'sentBy': req.user.username , 'sentTo': name},(err,msg)=>{
+			let values = [req.user.username,name] ;
+			console.log(values);
+			values.sort();
+			console.log(values);
+			Message.find({'users': values},(err,msg)=>{ko
 				console.log(msg);
 				if(err){
 					console.log(err);
@@ -111,7 +115,8 @@ module.exports = (app) => {
 					res.render('chat-page',{
 						username: req.user.username,
 						name: name,
-						msg: msg
+						msg: msg,
+						user: req.user
 					});
 					
 				}

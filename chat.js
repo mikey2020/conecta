@@ -11,7 +11,7 @@ module.exports = (io) => {
 
 		socket.on('chat-message',(data,sender,receiver) => {
 			console.log(data);
-			const msg = new Message({message: data , sentBy: sender , sentTo: receiver});
+			const msg = new Message({message: data , users: [sender,receiver] , sentBy: sender});
 			msg.save((err)=>{
 				if(err){
 					console.log(err);
@@ -20,7 +20,30 @@ module.exports = (io) => {
 					console.log(msg);
 				}
 			});
-			io.emit('display',data);
+			/*const transporter = nodemailer.createTransport({
+			  service: 'gmail',
+			  auth: {
+			    user: 'superdafe@gmail.com',
+			    pass: 'odafe2020'
+			  }
+			});
+
+			const mailOptions = {
+			  from: 'superdafe@gmail.com',
+			  to: req.body.email,
+			  subject: senderll  ,
+			  text: 'Get started by logging in'
+			};
+
+			transporter.sendMail(mailOptions, function(error, info){
+			  if (error) {
+			    console.log(error);
+			  } 
+			  else {
+			    console.log('Email sent: ' + info.response);
+			  }
+			});*/
+			io.emit('display',data,sender);
 		});
 
 

@@ -5,22 +5,34 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
+  <% include temps/header.ejs %>
   <body> 
     <h2>You are currently connecting with <%=name%></h2>
-    <div>
-      <p id="message" style="list-style-type:none">
+    <div class="container">
+      <p  style="list-style-type:none">
         <% for(let m in msg) { %>
-          <li><%=msg[m].message%></li>
+          <div class="well">
+          <li  style="list-style-type:none">
+          <%= msg[m].sentBy + ": " + msg[m].message%> <br> <%=msg[m].sentOn%> 
+          </li>
+          </div>
+          <br>
         <%}%>
+        
+        <p id="message" style="list-style-type:none"></p>
+        
       </p>
+     
 
     </div>
-    <form class="chat" action="" mehod="post">
-        <input type="text" id="name" value=<%=username%> >
-        <input type="text" id="name1" value=<%=name%> >
-        <input type="text" id="msg" name="msg">
-        <button id="send">send</button>
-    </form>
+    <div class="container">
+      <form class="chat" action="" mehod="post">
+          <input type="text" id="name" value=<%=username%> >
+          <input type="text" id="name1" value=<%=name%> >
+          <input type="text" id="msg" name="msg" autocomplete="off" width="100" height="10">
+          <button id="send">send</button>
+      </form>
+    </div>
     <script>
       const socket = io();
       $(() =>{
@@ -34,10 +46,10 @@
           return false;
         })
 
-        socket.on('display',(data)=>{
-           let name = $("#name").val();
+        socket.on('display',(data,sender)=>{
+           //let name = $("#name").val();
            let time = new Date();
-          $("#message").append('<li>' + name +  ": " +  data + "<br>" + time + '</li>');
+          $("#message").append('<div class="well">' + '<li>' + sender +  ": " +  data + "<br>" + time + '</li>' + '</div>');
         })
 
       })

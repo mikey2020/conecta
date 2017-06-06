@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const crypto = require('crypto');
 mongoose.Promise = global.Promise;
 
-
+const nodemailer = require('nodemailer');
 
 const UserSchema = new Schema({
 	firstname: String,
@@ -71,6 +71,29 @@ UserSchema.virtual('fullname').get(function(){
 UserSchema.post('save' , function(next){
 	console.log("process is done ");
 	console.log("user added succesfully");
+	const transporter = nodemailer.createTransport({
+	  service: 'gmail',
+	  auth: {
+	    user: 'superdafe@gmail.com',
+	    pass: 'odafe2020'
+	  }
+	});
+
+	const mailOptions = {
+	  from: 'superdafe@gmail.com',
+	  to: req.body.email,
+	  subject: 'Welcome to Conecta',
+	  text: 'Get started by logging in'
+	};
+
+	transporter.sendMail(mailOptions, function(error, info){
+	  if (error) {
+	    console.log(error);
+	  } 
+	  else {
+	    console.log('Email sent: ' + info.response);
+	  }
+	});
 });
 
 mongoose.model('User',UserSchema);

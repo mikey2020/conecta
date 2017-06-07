@@ -4,6 +4,7 @@
     <title><%= title %> | Chat Page</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   </head>
   <% include temps/header.ejs %>
   <body> 
@@ -30,7 +31,7 @@
           <input type="text" id="name" value=<%=username%> >
           <input type="text" id="name1" value=<%=name%> >
           <input type="text" id="msg" name="msg" autocomplete="off" >
-          <button id="send">send</button>
+          <button class="btn btn-success" id="send">send</button>
       </form>
     </div>
     <script>

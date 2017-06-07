@@ -78,24 +78,26 @@ module.exports = (app) => {
 		console.log(req.body);
 		console.log(req.user.username);
 		User.find({ 'username': req.body.query}, function (err, user) {
-		  console.log(typeof user);
+		  console.log(user[0]);
 		  if (err) {
 		  	console.log(err);
 		  	res.redirect('/');
 		  }
 		 
-		  else if(user === null){
+		  if(user == 0){
 		  	console.log("user doesnt exidst");
 		  	res.json({'message':'doesnt exist'});	
 		  }
-
-		 else if(user.username == req.user.username){
-		  	console.log("cannot connect with your self");
-		  }
 		   
 		  else{
-		     console.log(user);
-		     res.json(user);
+		  	 if(user[0].username == req.user.username){
+		  		console.log("cannot connect with yourself");
+		  	 }
+		  	 else{
+		  	 	console.log(user);
+		     	res.json(user);
+		  	 }
+		     
 		   }
 		  //req.session.results = user;
 		  //res.redirect('/');

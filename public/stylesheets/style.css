@@ -7,15 +7,15 @@ body{
 }
 
 #msg{
-	border: 2px; 
+	border: 2px solid black; 
 	border-radius: 6px;
 	padding: 10px; 
-	width: 90%; 
+	width: 60%; 
 	margin-right: .5%; 
 }
 
 #user-id{
-	position:  fixed;
+	position: relative;
 	top: 12px;
 }
 
@@ -45,4 +45,19 @@ body{
 #login-header{
 	position: relative;
 	top: -20px;
+}
+
+#signup{
+	width: 500px;
+	height: 100%;
+	position: relative;
+	left: 190px;
+	top: 20px;
+}
+
+#signup-header{
+	position: relative;
+	top: -4px;
+	left: 10px;
+
 }

@@ -5,16 +5,16 @@
   </head>
   <% include temps/header.ejs %>
   <body> 
-    <p><a href="/login">login here </a></p>
     <div>
       <% for(let message in messages){ %>
           <p ><%= messages[message] %></p>
       <% } %>
     </div>
     <div class="container">
-    <div class = "jumbotron">
-        <form method="post" action="/signup" class="form-horizontal">
-           <div class="form-group" id="signup">
+    <div class = "jumbotron" id="signup">
+        <form method="post" action="/signup" class="">
+          <div class="form-group" id="">
+          <p  id="signup-header">Sign Up here</p>
         	<input type = "text" placeholder="firstname" name = "firstname" class="form-control" id="usr"  >
         	<br>
         	<input type = "text" placeholder="lastname" name = "lastname" class="form-control" id="usr" class="form-control">

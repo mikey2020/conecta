@@ -11,9 +11,16 @@
   	<div class="container">
 	  <div class="jumbotron">
 	  	<% if(name) { %>
-	    	<h2>hello <%=name%></h2>
+	    	<h2><%name%></h2>
 	    <%}%>
 	    <div> 
+
+	    	<div>
+	    		<p>Your previous connections</p>
+	    		<%for(let x in users){%>
+	    			<p><a class="btn btn-default" href=<%="/chat/" + users[x] %>><%=users[x]%></a></p>
+	    		<%}%>	
+	    	</div>
 
 			<p>Search Results:</p>
 			<!--<p class="btn btn-default">{{results}}</p>-->

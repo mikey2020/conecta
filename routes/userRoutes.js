@@ -76,7 +76,9 @@ module.exports = (app) => {
 
 	app.post('/search', (req,res) => {
 		console.log(req.body);
+		console.log(req.user.username);
 		User.find({ 'username': req.body.query}, function (err, user) {
+		  console.log(typeof user);
 		  if (err) {
 		  	console.log(err);
 		  	res.redirect('/');
@@ -84,9 +86,11 @@ module.exports = (app) => {
 		 
 		  else if(user === null){
 		  	console.log("user doesnt exidst");
-		  	res.json({'message':'doesnt exist'});
-		  	
-		  	
+		  	res.json({'message':'doesnt exist'});	
+		  }
+
+		 else if(user.username == req.user.username){
+		  	console.log("cannot connect with your self");
 		  }
 		   
 		  else{

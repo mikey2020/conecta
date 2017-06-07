@@ -19,7 +19,7 @@
 			<!--<p class="btn btn-default">{{results}}</p>-->
 			<ul>
 			    <li style="list-style-type:none" ng-repeat="x in results">
-			    <a class="btn btn-default" href= {{"/chat/"+x.username}}>{{x.firstname + " " + x.lastname}}</a>
+			    <a class="btn btn-default" href= {{"/chat/"+x.username}}>{{"Connect with " + x.firstname + " " + x.lastname}}</a>
 			    </li>
 			</ul>
 

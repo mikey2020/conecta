@@ -30,9 +30,7 @@ const UserSchema = new Schema({
 
 	salt: String ,
 
-	lastVisit: {
-		type: Date
-	},
+	connections: [],
 
 }, {
 	timestamps: { createdAt: 'created_at' }
@@ -55,7 +53,7 @@ UserSchema.methods.authenticate =function(pass){
 
 UserSchema.pre('save' , function(next){
 	console.log("process is running ");
-	if(this.password){
+	if(this.password && this.connections == 0 ){
 		this.salt = crypto.randomBytes(16);
 		this.password = this.hashPassword(this.password);
 
@@ -71,7 +69,7 @@ UserSchema.virtual('fullname').get(function(){
 UserSchema.post('save' , function(next){
 	console.log("process is done ");
 	console.log("user added succesfully");
-	const transporter = nodemailer.createTransport({
+	/*const transporter = nodemailer.createTransport({
 	  service: 'gmail',
 	  auth: {
 	    user: 'superdafe@gmail.com',
@@ -81,9 +79,9 @@ UserSchema.post('save' , function(next){
 
 	const mailOptions = {
 	  from: 'superdafe@gmail.com',
-	  to: req.body.email,
+	  to: this.email,
 	  subject: 'Welcome to Conecta',
-	  text: 'Get started by logging in'
+	  text: 'Get started by searching for connections on your home page'
 	};
 
 	transporter.sendMail(mailOptions, function(error, info){
@@ -93,7 +91,7 @@ UserSchema.post('save' , function(next){
 	  else {
 	    console.log('Email sent: ' + info.response);
 	  }
-	});
+	});*/
 });
 
 mongoose.model('User',UserSchema);

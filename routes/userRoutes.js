@@ -21,7 +21,16 @@ const fs = require('fs');
 
 require('../local');
 
-
+const checkValue = (val,list) => {
+	for(let v in  list){
+		if(list[v] == val){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+}
 
 module.exports = (app) => {
 	app.get('/signup',user.renderSignUp);
@@ -94,16 +103,41 @@ module.exports = (app) => {
 	});
 
 	app.get('/chat/:name',(req,res) => {
-		console.log("am working");
 		if(!req.user){
 			res.redirect('/login');
 		}
 		else{
+			User.findById(req.user.id,(err,user) => {
+				/*User.findOne({"username": name},(error,user1) => {
+					if(error) throw error;
+					console.log("finding other user");
+					console.log(user1);
+					user.connections.push([user1.username,user1.firstname,user1.lastname]);""
+				})*/
+				
+				if(checkValue(name,user.connections) == true){
+					console.log("already connected with " + name);
+				}
+				else{
+					user.connections.push(name);
+					user.save((err,updatedUser) => {
+						if(err){
+							console.log(err);
+						}
+						else{
+							console.log(updatedUser);
+						}
+					});
+				}
+
+
+				
+			});
 			let values = [req.user.username,name] ;
 			console.log(values);
 			values.sort();
 			console.log(values);
-			Message.find({'users': values},(err,msg)=>{ko
+			Message.find({'users': values},(err,msg)=>{
 				console.log(msg);
 				if(err){
 					console.log(err);

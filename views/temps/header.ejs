@@ -11,37 +11,32 @@
   		<link rel="stylesheet" href="/stylesheets/style.css">
 		<title><%= title %></title>  
 	</head> 
-	<div ng-app="myApp" ng-controller="myCtrl">
-	<nav class="navbar navbar-inverse ">
-	  <div class="container-fluid" id="my-header" >
-	    <div class="navbar-header">
-	      <a class="navbar-brand " href="#"><%=title%></a>
-	    </div>
-	    <ul class="nav nav-pills" method="POST" action="">
-	      <li class="my-nav active"><a href="/">Home</a></li>
-	      <li><a class="my-nav" href="/signup">SignUp</a></li>
-	      <li><a class="my-nav" href="/login">Login</a></li>
-	    </ul>
-	    <% if(user != "") { %>
-		    <form class="navbar-form navbar-left">
-			  <div class="input-group">
-			    <input type="text" class="form-control" placeholder="Username" name="query" ng-model="name" ng-change="search()">
-			    <div class="input-group-btn">
-			      <button class="btn btn-default" type="submit">
-			        <i class="glyphicon glyphicon-search"></i>
-			      </button>
-			    </div>
-			  </div> 
-			</form>
-			<div class="dropdown">
-				  <button id="user-id" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-				  <%=user.username%>
-				  <span class="caret"></span></button>
-				  <ul id="logout" class="dropdown-menu">
-				    <li ><a href="/logout">logout</a></li>
-				  </ul>
-			</div>
-		<% } %>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#"><%=title%></a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">Home</a></li>
+		      <li><a href="#">Page 1</a></li>
+		      <% if(user != "") { %>
+			 	<li class="dropdown">
+			        <button id="user-id" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#"><%=user.username%>
+			        <span class="caret"></span></button>
+			        <ul id="logout" class="dropdown-menu">
+			          <li><a href="/logout" >logout</a></li>
+			        </ul>
+			    </li>
+		     <% } %>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+		    
+		  </div>
+		</nav>
+	    
 	    <!--<form class="navbar-form navbar-left" method="POST" action="">
 	      <div class="form-group">
 	        <input type="text" class="form-control" placeholder="Username" name="query" ng-model="name" ng-change="search()">

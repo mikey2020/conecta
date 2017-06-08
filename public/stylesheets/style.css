@@ -1,9 +1,9 @@
 #my-header{
-	background-color: #474242     ;
+	background-color: #2D3135      ;
 }
 
 body{
-	background-color:   ;
+	background-color:    ;
 }
 
 #msg{
@@ -37,6 +37,7 @@ body{
 	position: relative;
 	left: 190px;
 	top: 50px;
+	background-color: #DAE4ED        ;
 }
 
 #login{
@@ -55,6 +56,7 @@ body{
 	position: relative;
 	left: 190px;
 	top: 20px;
+	background-color: #DAE4ED ;
 }
 
 #signup-header{

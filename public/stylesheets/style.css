@@ -17,12 +17,13 @@ body{
 #user-id{
 	position: relative;
 	top: 9px;
-	left: 5px;
+	left: 600px;
 }
 
 #logout{
-	position: absolute;
-	
+	position: relative;
+	top: 40px;
+	left: 500px;
 }
 
 .my-nav{
@@ -66,12 +67,18 @@ body{
 #search{
 	position: relative;
 	left: 100px;
-	width: 45%;
+	width: 30%;
 	text-align: center;
 }
 
 #search-button{
 	position: relative;
-	left: -500px;
+	left: -650px;
 	
+}
+
+.search-group{
+
+	position: relative;
+	top: -8px;
 }

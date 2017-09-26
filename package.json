@@ -8,11 +8,14 @@
     "npm": "3.10.10"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha server/test/** --require babel-polyfill --compilers js:babel-register",
+    "build": "babel src -d lib",
+    "server": "nodemon server.js --exec babel-node"
   },
   "author": "Michael E",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -20,12 +23,26 @@
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
+    "jsonwebtoken": "^8.0.1",
     "method-override": "^2.3.9",
     "mongoose": "^4.10.4",
     "morgan": "^1.8.2",
-    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "socket.io": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0",
+    "mocha": "^3.5.3",
+    "nodemon": "^1.11.0",
+    "should": "^13.1.0",
+    "supertest": "^3.0.0"
   }
 }

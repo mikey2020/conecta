@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
-import crypto from 'crypto';
+import bcrypt from 'bcrypt-nodejs';
 
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 const userSchema = new Schema({
-  firstname: String,
-  lastname: String,
   username: {
     type: String,
     unique: true,
@@ -18,8 +16,12 @@ const userSchema = new Schema({
     unique: true,
     required: true
   },
-  picture: {
+  avatar: {
     type: String
+  },
+  phoneNumber: {
+    type: String,
+    unique: true
   },
   password: {
     type: String,
@@ -39,10 +41,7 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.hashPassword = (password) => {
-  let hashedPassword = crypto.pbkdf2Sync(
-    password, this.salt, 1000, 64, 'sha512');
-  hashedPassword = hashedPassword.toString('hex');
-  console.log(hashedPassword.toString('hex'));
+  const hashedPassword = bcrypt.hashSync(password);
   return hashedPassword;
 };
 
@@ -52,25 +51,23 @@ userSchema.methods.authenticate = (pass) => {
   }
 };
 
-userSchema.pre('save', (next) => {
+
+userSchema.pre('save', function (next) {
   console.log('process is running ');
   if (this.password) {
-    this.salt = crypto.randomBytes(16);
     this.password = this.hashPassword(this.password);
   }
 
   next();
 });
 
-userSchema.virtual('fullname').get(() => `${this.firstname} ${this.lastname}`);
+// userSchema.virtual('fullname').get(() => `${this.firstname} ${this.lastname}`);
 
 userSchema.post('save', (next) => {
   console.log('process is done ');
   console.log('user added succesfully');
-  next();
 });
 
-// mongoose.model('User', UserSchema);
 
 userSchema.set('toJSON', { getters: true, virtuals: true });
 

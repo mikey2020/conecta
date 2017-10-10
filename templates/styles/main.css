@@ -1,3 +1,13 @@
+header, main, footer {
+      padding-left: 300px;
+    }
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+    padding-left: 0;
+    }
+}
+          
 .logo{
     color: #1E8A1E!important;
 }
@@ -52,4 +62,31 @@ h1 {
 .logo1{
     color: #1E8A1E!important;
     margin-left: 450px;
+}
+
+.messages{
+    margin-top: 10px;
+}
+
+.receiver-message{
+    margin-left: 50px !important;
+    margin-top: 30px !important;
+    padding-top: 10px !important;
+}
+
+.sender-message{
+    margin-top: 23px !important;
+    padding-top: 10px !important;
+}
+
+.collection{
+    border: 0 !important;
+}
+
+.collection .collection-item.avatar{
+    border-radius: 20px !important;
+}
+
+.message-input{
+    margin-left: 28% !important;
 }

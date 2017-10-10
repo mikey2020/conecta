@@ -6,11 +6,13 @@ mongoose.Promise = global.Promise;
 
 const MessageSchema = new Schema({
   content: {
-    type: String
+    type: String,
+    required: true
   },
 
   receiver: {
-    type: String
+    type: String,
+    required: true
   }
 });
 
@@ -19,7 +21,7 @@ MessageSchema.methods.encryptMessage = (message) => {
   console.log(message);
 };
 
-MessageSchema.pre('save', (next) => {
+MessageSchema.pre('save', function (next) {
   console.log('process is running ');
   console.log(this.content);
 
@@ -29,7 +31,6 @@ MessageSchema.pre('save', (next) => {
 MessageSchema.post('save', (next) => {
   console.log('process is done ');
   console.log('message created successfully');
-  next();
 });
 
 mongoose.model('Message', MessageSchema);

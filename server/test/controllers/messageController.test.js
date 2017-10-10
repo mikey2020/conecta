@@ -16,7 +16,7 @@ const exampleMessage = {
   message: 'hello world'
 };
 
-describe('User controller', () => {
+xdescribe('User controller', () => {
   describe('should', () => {
     it('return success message when a user has logged in', (done) => {
       user.post('/api/v1/user/login')

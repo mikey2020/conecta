@@ -1,22 +1,39 @@
 import should from 'should';
-import User from '../../models/User';
+import mongoose from 'mongoose';
+import UserSchema from '../../models/User';
 import app from '../../../app';
 
+const User = mongoose.model('User');
+
+const newUser = new User({
+  username: 'naruto',
+  email: 'naruto@konoha.com',
+  password: 'naruto'
+});
 
 describe('User Model:', () => {
-  it('should be able to register a new user to the database', (done) => {
-    const newUser = new User({
-      username: 'sasuke',
-      password: 'sasuke'
-    });
-    newUser.save((error, user) => {
-      should.exist(user);
-      should.exist(user.username);
-      user.username.should.equal('user');
-    });
-    User.find({}, (err, user) => {
-      console.log(user);
+  beforeEach((done) => {
+    newUser.save((err) => {
+      if (err) throw err;
     });
     done();
   });
+
+  it('should be able to register a new user to the database', (done) => {
+    User.findOne({ username: newUser.username }).then((data) => {
+      console.log('data', data);
+      should.exist(data);
+      data.username.should.equal('sasuk');
+      should.exist(data.password);
+    });
+    done();
+  });
+
+  // after((done) => {
+  //   User.findByIdAndRemove(newUser._id, (err, user) => {
+  //     if (err) throw err;
+  //     console.log(user);
+  //   });
+  //   done();
+  // });
 });

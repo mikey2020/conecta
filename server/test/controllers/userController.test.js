@@ -1,6 +1,7 @@
 import should from 'should';
 import request from 'supertest';
 import app from '../../../app.js';
+import User from '../../models/User';
 
 const user = request.agent(app);
 let token;
@@ -12,32 +13,32 @@ const exampleUser = {
   passwordConfirmation: 'hinata',
 };
 
-xdescribe('User controller', () => {
-  describe('should', () => {
-    it('return success message when a user is successfully registered', (done) => {
-      user.post('/api/v1/user/register')
-        .send(exampleUser)
-        .end((err, res) => {
-          res.status.should.equal(200);
-          should.not.exist(err);
-          res.body.should.have.property('user', res.body.user);
-          res.body.user.message.should.equal('naruto added successfully');
-          token = res.body.user.userToken;
-          done();
-        });
+describe('User controller', () => {
+  before((done) => {
+    User.remove({}, (err) => {
+      done();
     });
+  });
 
-    it('return success message when a user is successfully logged in', (done) => {
-      user.post('/api/v1/user/login')
-        .send(exampleUser)
-        .end((err, res) => {
-          res.status.should.equal(200);
-          should.not.exist(err);
-          res.body.should.have.property('user', res.body.user);
-          res.body.user.message.should.equal('naruto signed in');
-          token = res.body.user.userToken;
-          done();
-        });
-    });
+  it('should return success message when a user is successfully registered', (done) => {
+    user.post('/api/v1/user/register')
+      .send(exampleUser)
+      .end((err, res) => {
+        res.status.should.equal(201);
+        should.not.exist(err);
+        res.body.should.have.property('userToken', res.body.userToken);
+        done();
+      });
+  });
+
+  it('should return success message when a user is successfully logged in', (done) => {
+    user.post('/api/v1/user/login')
+      .send(exampleUser)
+      .end((err, res) => {
+        res.status.should.equal(200);
+        should.not.exist(err);
+        res.body.should.have.property('userToken', res.body.userToken);
+        done();
+      });
   });
 });

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-// import crypto from 'crypto';
+import { encrypt } from '../helpers/encryption';
 
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -17,14 +17,12 @@ const MessageSchema = new Schema({
 });
 
 MessageSchema.methods.encryptMessage = (message) => {
-  // encrypt(message);
-  console.log(message);
+  encrypt(message.content);
 };
 
 MessageSchema.pre('save', function (next) {
-  console.log('process is running ');
+  this.content = encrypt(this.content);
   console.log(this.content);
-
   next();
 });
 

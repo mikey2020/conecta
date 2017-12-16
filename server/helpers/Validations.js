@@ -20,8 +20,8 @@ class Validations {
     if (user.password) {
       user.password = user.password.trim();
     }
-    if (!user.email || !user.password || !user.username) {
-      this.errors.invalid = 'Invalid paramters';
+    if (!user.email && !user.password && !user.username) {
+      this.errors.invalid = 'Invalid parameters';
     }
 
     if (user.username === null || user.username === '') {
@@ -34,14 +34,6 @@ class Validations {
 
     if (user.email === null || user.email === '') {
       this.errors.email = 'Email is required';
-    }
-
-    if (user.phoneNumber !== undefined && user.phoneNumber !== '') {
-      if (Validations.isPhoneNumber(user.phoneNumber) !== true) {
-        this.errors.phoneNumber = 'Please enter a valid phone number';
-      }
-    } else {
-      this.errors.phoneNumber = 'Phone number is required';
     }
 
     if (isNaN(user.email)) {
@@ -139,11 +131,8 @@ class Validations {
     this.errors = {};
     let { content, receiver } = message;
     if (content !== undefined || receiver !== undefined) {
-      content = content.trim();
+      // content = content.trim();
       receiver = receiver.trim();
-      this.errors.content = 'Content is required';
-      this.errors.receiver = 'Message receiver is required';
-    } else {
       if (content === undefined || content === '') {
         this.errors.content = 'Content is required';
       }

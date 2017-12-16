@@ -19,10 +19,6 @@ const userSchema = new Schema({
   avatar: {
     type: String
   },
-  phoneNumber: {
-    type: String,
-    unique: true
-  },
   password: {
     type: String,
     required: [true, 'must have password'],
@@ -37,7 +33,9 @@ const userSchema = new Schema({
   },
 
 }, {
-  timestamps: { createdAt: 'created_at' }
+  timestamps: {
+    createdAt: 'created_at'
+  }
 });
 
 userSchema.methods.hashPassword = (password) => {

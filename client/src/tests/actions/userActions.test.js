@@ -2,11 +2,11 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import { expect } from 'chai';
 import MockLocalStorage from 'mock-localstorage';
 
 import * as mockUsers from './../__mocks__/mockUsers';
-import * as actions from '../../src/actions/userActions';
+import UserActions from '../../actions/UserActions';
+
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -16,7 +16,6 @@ describe('User Actions', () => {
     axios.post = jest.fn(() =>
       Promise.resolve({
         data: {
-          message: 'naruto signed up',
           userToken: 'exampletoken'
         }
       })
@@ -25,14 +24,32 @@ describe('User Actions', () => {
     const store = mockStore({});
     const expectedActions = [
       {
-        type: 'REGISTER_NEW_USER',
-        user: {
-          username: 'naruto',
-          email: 'naruto@konoha.com'
-        }
+        type: 'SET_USER_DETAILS',
+        user: null
       }
     ];
-    return store.dispatch(actions.registerUser(mockUsers.naruto)).then(() => {
+    return store.dispatch(UserActions.register(mockUsers.naruto)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  it('should login a user', () => {
+    axios.post = jest.fn(() =>
+      Promise.resolve({
+        data: {
+          userToken: 'exampletoken'
+        }
+      })
+    );
+
+    const store = mockStore({});
+    const expectedActions = [
+      {
+        type: 'SET_USER_DETAILS',
+        user: null
+      }
+    ];
+    return store.dispatch(UserActions.login(mockUsers.naruto)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

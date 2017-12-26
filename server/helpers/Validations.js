@@ -131,7 +131,6 @@ class Validations {
     this.errors = {};
     let { content, receiver } = message;
     if (content !== undefined || receiver !== undefined) {
-      // content = content.trim();
       receiver = receiver.trim();
       if (content === undefined || content === '') {
         this.errors.content = 'Content is required';

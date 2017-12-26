@@ -1,7 +1,5 @@
-import { expect } from 'chai';
-
-import reducer from '../../src/reducers/message';
-import * as types from '../../src/actions/types';
+import reducer from '../../reducers/message';
+import * as types from '../../actions/types';
 
 
 describe('Message reducer', () => {
@@ -9,17 +7,17 @@ describe('Message reducer', () => {
     expect(reducer(undefined, {})).toEqual([]);
   });
 
-  it('should return  a new state for case `LOGIN_USER` ', () => {
+  it('should return a new state for case `SEND_MESSAGE` ', () => {
     expect(reducer(
       {}, {
-        type: types.SEND_NEW_MESSAGE,
+        type: types.SEND_MESSAGE,
         message: {
           content: 'am testing this application',
           receiver: 'mike'
         }
       })).toEqual(
       {
-        content: 'am testing this application',
+        message: 'am testing this application',
         receiver: 'mike'
       }
     );

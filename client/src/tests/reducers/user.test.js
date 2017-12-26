@@ -1,7 +1,5 @@
-import { expect } from 'chai';
-
-import reducer from '../../src/reducers/user';
-import * as types from '../../src/actions/types';
+import reducer from '../../reducers/user';
+import * as types from '../../actions/types';
 
 
 describe('User reducer', () => {
@@ -14,13 +12,13 @@ describe('User reducer', () => {
     );
   });
 
-  it('should return  a new state for case `LOGIN_USER` ', () => {
+  it('should return a new state for case `SET_USER_DETAILS` ', () => {
     expect(reducer(
       {
         isAuthenticated: false,
         user: {}
       }, {
-        type: types.LOGIN_USER,
+        type: types.SET_USER_DETAILS,
         user: {
           username: 'mike',
           email: 'mike@gmail.com'
@@ -36,7 +34,7 @@ describe('User reducer', () => {
     );
   });
 
-  it('should return  a new state for case `LOGOUT_USER` ', () => {
+  it('should return a new state for case `UNSET_USER_DETAILS` ', () => {
     expect(reducer(
       {
         isAuthenticated: true,
@@ -46,7 +44,7 @@ describe('User reducer', () => {
         }
       },
       {
-        type: types.LOGOUT_USER,
+        type: types.UNSET_USER_DETAILS,
         user: {}
       })
     ).toEqual(

@@ -20,25 +20,27 @@ describe('User controller', () => {
     });
   });
 
-  it('should return success message when a user is successfully registered', (done) => {
-    user.post('/api/v1/user/register')
-      .send(exampleUser)
-      .end((err, res) => {
-        res.status.should.equal(201);
-        should.not.exist(err);
-        res.body.should.have.property('userToken', res.body.userToken);
-        done();
-      });
-  });
+  it('should return success message when a user is successfully registered', 
+    (done) => {
+      user.post('/api/v1/user/register')
+        .send(exampleUser)
+        .end((err, res) => {
+          res.status.should.equal(201);
+          should.not.exist(err);
+          res.body.should.have.property('userToken', res.body.userToken);
+          done();
+        });
+    });
 
-  it('should return success message when a user is successfully logged in', (done) => {
-    user.post('/api/v1/user/login')
-      .send(exampleUser)
-      .end((err, res) => {
-        res.status.should.equal(200);
-        should.not.exist(err);
-        res.body.should.have.property('userToken', res.body.userToken);
-        done();
-      });
-  });
+  it('should return success message when a user is successfully logged in', 
+    (done) => {
+      user.post('/api/v1/user/login')
+        .send(exampleUser)
+        .end((err, res) => {
+          res.status.should.equal(200);
+          should.not.exist(err);
+          res.body.should.have.property('userToken', res.body.userToken);
+          done();
+        });
+    });
 });

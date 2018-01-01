@@ -15,10 +15,10 @@ const Message = mongoose.model('Message');
 class MessageController {
   /**
    * @function sendMessage
-   * 
+   *
    * @param {Object} request
    * @param {Object} response
-   * 
+   *
    * @returns {void}
    */
   static sendMessage(request, response) {

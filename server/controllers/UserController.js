@@ -12,16 +12,16 @@ const validate = new Validations();
 const User = mongoose.model('User');
 /**
  * @class
- * 
+ *
  * @description - User controller class
  */
 class UserController {
   /**
-   * @description - It registers a user to the database and 
-   * it returns a user token 
-   * 
-   * @param {Object} request 
-   * @param {Object} response 
+   * @description - It registers a user to the database and
+   * it returns a user token
+   *
+   * @param {Object} request
+   * @param {Object} response
    *
    * @returns {void}
    */
@@ -51,10 +51,10 @@ class UserController {
 
   /**
    * @description - It logs a user into the application
-   * 
+   *
    * @returns {Object} - response object
    *
-   * @param {Object} request 
+   * @param {Object} request
    * @param {Object} response
    */
   static login(request, response) {

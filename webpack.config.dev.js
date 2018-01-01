@@ -41,8 +41,11 @@ export default {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=application/octet-stream'
       }, {
-        test: /\.(jpe?g|png|gif|svg|jpg)$/i,
-        loader: 'file-loader'
+        test: /\.(jpg|png|gif|svg)$/i,
+        loader: [
+          'file-loader?name=/public/image/[name].[ext]',
+          'image-webpack-loader'
+        ]
       }
     ]
   },

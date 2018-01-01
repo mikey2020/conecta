@@ -9,12 +9,12 @@ const Connection = mongoose.model('Connection');
 class ConnectionController {
   /**
      * @method connect
-     * 
+     *
      * @description - It link one or more users together
-     * 
+     *
      * @param {Object} request - signup object
      * @param {Object} response - errors object if there is any
-     * 
+     *
      * @returns {void}
      */
   static connect(request, response) {

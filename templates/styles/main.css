@@ -55,6 +55,7 @@ header, main, footer {
 .welcome-display > p {
     font-size: 20px;
 }
+
 h1 {
     margin-top: 200px;
 }
@@ -70,6 +71,8 @@ h1 {
     max-height: 400px;
     overflow-y: scroll;
 }
+
+
 
 .receiver-message{
     margin-left: 50px !important;

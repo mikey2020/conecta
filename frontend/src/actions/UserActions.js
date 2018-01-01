@@ -20,7 +20,7 @@ class UserActions {
   }
   /**
    * @param {Object} userDetails - User's details
-   * 
+   *
    * @returns {void}
    */
   static register(userDetails) {
@@ -38,9 +38,9 @@ class UserActions {
   }
 
   /**
-   * 
-   * @param {Object} userDetails 
-   * 
+   *
+   * @param {Object} userDetails
+   *
    * @returns {void}
    */
   static login(userDetails) {

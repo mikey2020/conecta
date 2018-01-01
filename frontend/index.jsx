@@ -8,7 +8,6 @@ import Routes from './Routes.jsx';
 import { store } from './store';
 import App from './src/components/App.jsx';
 
-
 render(
   <Provider store={store}>
     <BrowserRouter>

@@ -111,3 +111,14 @@ h1 {
 .signin-header{
   color: #000;
 }
+
+.welcome-message{
+    color: white;
+    padding-left: 41px !important;
+    padding-right: 40px !important;
+    padding-top: 6px !important;
+    font-size: 32px !important;
+    padding-bottom: 57px !important;
+    background-color: #262A26;
+    font-family: 'Dancing Script', cursive;
+}

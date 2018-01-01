@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Welcome component
@@ -10,11 +11,13 @@ import React from 'react';
 const HomePage = () => (
   <div className="landing-page row">
     <div className="overlay">
-      <h1 className="center welcome"> Welcome to Connect</h1>
-      <p className="center welcome-message"> Get started by signing up here </p>
+      <h1 className="btn-large center welcome-message col push-s3 push-m4.5 push-l5">
+       Connect
+      </h1>
     </div>
   </div>
 );
+
 
 export default HomePage;
 

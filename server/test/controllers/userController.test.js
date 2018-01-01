@@ -16,6 +16,7 @@ const exampleUser = {
 describe('User controller', () => {
   before((done) => {
     User.remove({}, (err) => {
+      console.log(err);
       done();
     });
   });
@@ -32,7 +33,7 @@ describe('User controller', () => {
         });
     });
 
-  it('should return success message when a user is successfully logged in', 
+  it('should return success message when a user is successfully logged in',
     (done) => {
       user.post('/api/v1/user/login')
         .send(exampleUser)

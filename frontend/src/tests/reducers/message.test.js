@@ -16,10 +16,10 @@ describe('Message reducer', () => {
           receiver: 'mike'
         }
       })).toEqual(
-      {
+      [{
         message: 'am testing this application',
         receiver: 'mike'
-      }
+      }]
     );
   });
 });

@@ -16,6 +16,7 @@ const decrypt = (encryptedMessage) => {
 };
 
 // console.log('encryption', encryptedData.toString());
-// console.log('decryption', CryptoJS.AES.decrypt(encryptedData, 'game').toString(CryptoJS.enc.Utf8));
+// console.log('decryption', CryptoJS.AES.decrypt(encryptedData, 'game').
+// toString(CryptoJS.enc.Utf8));
 
 export { encrypt, decrypt };

@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div id="modal1" className="modal">
+      <div>
         <div className="row">
           <div className="form-container col push-l1 push-s1 push-m1 s10 m10 l10">
             <center><h2 className="signin-header">Sign In</h2></center>
